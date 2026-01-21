@@ -553,6 +553,25 @@ node --experimental-strip-types test-remote.ts
 
 Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
+## Disclaimer
+
+**OpenCode Worker** is an independent implementation created by [DoozieSoft](https://github.com/DoozieSoftware).
+
+This project is **not officially endorsed by**, **affiliated with**, or **sponsored by OpenCode or OpenCode-AI, Inc.**
+
+### Relationship
+
+- This is a **third-party implementation**
+- It uses the **public OpenCode plugin SDK**
+- It is **not maintained by OpenCode**
+- **OpenCode trademarks** are used only to describe compatibility
+
+### Trademark Usage
+
+"OpenCode" is a trademark of OpenCode-AI, Inc. This project uses the name "OpenCode Worker" to indicate compatibility with the OpenCode ecosystem. This use of the trademark does not indicate sponsorship, endorsement, or affiliation with OpenCode-AI, Inc.
+
+For official OpenCode products and services, please visit [opencode.ai](https://opencode.ai).
+
 ## Versioning
 
 We use [Semantic Versioning](https://semver.org/). For available versions, see the [CHANGELOG](CHANGELOG.md).

@@ -1,5 +1,7 @@
 # Contributor Covenant Code of Conduct
 
+> **Note**: This project is independently maintained by [DoozieSoft](https://github.com/DoozieSoftware). It is not affiliated with, endorsed by, or sponsored by OpenCode or OpenCode-AI, Inc. For issues related to OpenCode itself, please visit [opencode.ai](https://opencode.ai).
+
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our

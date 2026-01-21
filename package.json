@@ -1,9 +1,10 @@
 {
   "name": "opencode-worker",
   "version": "1.0.0",
-  "description": "OpenCode Worker - Stateless remote execution runtime for distributed job processing",
+  "description": "Independent remote execution worker for the OpenCode plugin ecosystem",
   "main": "dist/index.js",
   "type": "module",
+  "disclaimer": "This is an independent implementation and is not officially endorsed by, affiliated with, or sponsored by OpenCode or OpenCode-AI, Inc.",
   "scripts": {
     "build": "tsc",
     "test": "vitest",

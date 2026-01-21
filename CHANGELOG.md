@@ -1,5 +1,7 @@
 # Changelog
 
+> **Disclaimer**: This is an independent implementation created by [DoozieSoft](https://github.com/DoozieSoftware). It is not officially endorsed by, affiliated with, or sponsored by OpenCode or OpenCode-AI, Inc.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),

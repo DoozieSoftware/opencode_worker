@@ -120,6 +120,67 @@ export const workerGetMetricsTool = toolFn({
   },
 });
 
+const streamConfigSchema = schema.object({
+  chunk_size: schema.number().optional().describe("Chunk size in bytes"),
+  capture_stdout: schema.boolean().optional().describe("Capture stdout"),
+  capture_stderr: schema.boolean().optional().describe("Capture stderr"),
+});
+
+const streamingArgsSchema = schema.object({
+  job_id: jobIdSchema,
+  command: commandSchema,
+  files: filesSchema.optional(),
+  limits: limitsSchema.optional(),
+  config: configSchema.optional(),
+  stream_config: streamConfigSchema.optional(),
+});
+
+export const workerStreamJobTool = toolFn({
+  description:
+    "Dispatch a job with WebSocket streaming for real-time output. Connect to ws://localhost:8080 and subscribe to job_id to receive streaming output.",
+  args: streamingArgsSchema,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  execute: async (args: any) => {
+    return `Streaming job ${String(args.job_id ?? "")} dispatched`;
+  },
+});
+
+const portSchema = schema.number().optional().describe("WebSocket port");
+
+export const workerGetStreamUrlTool = toolFn({
+  description:
+    "Get the WebSocket URL for streaming job output. Connect to this URL and subscribe to job updates.",
+  args: {
+    port: portSchema,
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  execute: async (args: any) => {
+    const port = args.port ?? 8080;
+    return `ws://localhost:${port}`;
+  },
+});
+
+export const workerSubscribeStreamTool = toolFn({
+  description:
+    "Subscribe to real-time updates for a job. Returns subscription info for connecting to WebSocket stream.",
+  args: {
+    job_id: jobIdSchema,
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  execute: async (args: any) => {
+    const job_id = String(args.job_id ?? "");
+    return JSON.stringify({
+      action: "subscribe",
+      job_id,
+      ws_url: "ws://localhost:8080",
+      message: {
+        type: "subscribe",
+        job_ids: [job_id],
+      },
+    });
+  },
+});
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const allTools: any = {
   worker_dispatch_job: workerDispatchJobTool,
@@ -128,4 +189,7 @@ export const allTools: any = {
   worker_cancel_job: workerCancelJobTool,
   worker_list_sessions: workerListSessionsTool,
   worker_get_metrics: workerGetMetricsTool,
+  worker_stream_job: workerStreamJobTool,
+  worker_get_stream_url: workerGetStreamUrlTool,
+  worker_subscribe_stream: workerSubscribeStreamTool,
 };

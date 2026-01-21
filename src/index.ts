@@ -13,6 +13,9 @@ export const OpenCodeWorkerPlugin: Plugin = async (_input) => {
       worker_cancel_job: allTools.worker_cancel_job,
       worker_list_sessions: allTools.worker_list_sessions,
       worker_get_metrics: allTools.worker_get_metrics,
+      worker_stream_job: allTools.worker_stream_job,
+      worker_get_stream_url: allTools.worker_get_stream_url,
+      worker_subscribe_stream: allTools.worker_subscribe_stream,
     },
     event: async (_input) => {
       logger.debug("Event received", { event: _input.event });

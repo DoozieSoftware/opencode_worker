@@ -1,0 +1,47 @@
+{
+  "name": "opencode-worker",
+  "version": "1.0.0",
+  "description": "OpenCode Worker - Stateless remote execution runtime for distributed job processing",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "opencode",
+    "worker",
+    "execution",
+    "sandbox",
+    "remote",
+    "distributed",
+    "stateless",
+    "session"
+  ],
+  "author": "Doozie Software <opensource@dooziesoftware.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DoozieSoftware/opencode_worker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DoozieSoftware/opencode_worker/issues"
+  },
+  "homepage": "https://github.com/DoozieSoftware/opencode_worker",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.1.20",
+    "@opencode-ai/sdk": "^1.1.20",
+    "uuid": "^11.0.0",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^2.0.0"
+  }
+}

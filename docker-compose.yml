@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  opencode-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: opencode-worker-test
+    hostname: opencode-worker
+    ports:
+      - "2222:2222"
+    volumes:
+      # Mount directories for sessions and output
+      - opencode-sessions:/opt/opencode/sessions
+      - opencode-base:/opt/opencode/base:ro
+      - opencode-models:/opt/opencode/models:ro
+    environment:
+      - NODE_ENV=production
+      - OPENCODE_WORKER_HOME=/opt/opencode
+      - OPENCODE_WORKER_SESSIONS=/opt/opencode/sessions
+      - SSH_PORT=2222
+    networks:
+      - opencode-network
+    healthcheck:
+      test: ["CMD", "ssh", "-o", "StrictHostKeyChecking=no", "-o", "BatchMode=yes", "-o", "ConnectTimeout=3", "-p", "2222", "opencode@localhost", "exit", "0"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Master node for distributed testing
+  opencode-master:
+    image: node:22-alpine
+    container_name: opencode-master-test
+    hostname: opencode-master
+    volumes:
+      - ./test-master:/app
+    working_dir: /app
+    command: ["sleep", "infinity"]
+    networks:
+      - opencode-network
+    profiles:
+      - master
+
+volumes:
+  opencode-sessions:
+    driver: local
+  opencode-base:
+    driver: local
+  opencode-models:
+    driver: local
+
+networks:
+  opencode-network:
+    driver: bridge
